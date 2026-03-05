@@ -5,6 +5,20 @@ services:
     restart: unless-stopped
     volumes:
       - ollama_data:/root/.ollama
+    environment:
+      # GPU Visibility for Ada Lovelace Architecture
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      
+      # Core Engine Optimizations
+      - OLLAMA_FLASH_ATTENTION=1 # Crucial for RTX 40-series 
+      - OLLAMA_KV_CACHE_TYPE=q8_0 # Balance of quality and memory [7, 17]
+      - OLLAMA_KEEP_ALIVE=-1      # Persist model in VRAM 
+      
+      # CPU and Parallelism Tuning for i9-13950HX
+      - OLLAMA_NUM_PARALLEL=4     # Leverage 32 threads for concurrency [7, 15]
+      - OLLAMA_MAX_LOADED_MODELS=1 # Ensure full VRAM for the active model 
+      - OLLAMA_MAX_QUEUE=1024      # Handle spike loads [7, 36]
     ports:
       - "11434:11434"
     networks:
