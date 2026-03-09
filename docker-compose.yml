@@ -42,7 +42,7 @@ services:
     environment:
       - OLLAMA_BASE_URL=http://ollama:11434
       - NGC_API_KEY=${NGC_API_KEY}
-      - HF_TOKEN=${HF_TOEKN}
+      - HF_TOKEN=${HF_TOKEN}
     networks:
       - ai_network
     depends_on:
