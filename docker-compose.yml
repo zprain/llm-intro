@@ -16,9 +16,9 @@ services:
       - OLLAMA_KEEP_ALIVE=-1      # Persist model in VRAM 
       
       # CPU and Parallelism Tuning for i9-13950HX
-      - OLLAMA_NUM_PARALLEL=4     # Leverage 32 threads for concurrency [7, 15]
-      - OLLAMA_MAX_LOADED_MODELS=1 # Ensure full VRAM for the active model 
-      - OLLAMA_MAX_QUEUE=1024      # Handle spike loads [7, 36]
+      - OLLAMA_NUM_PARALLEL=12     # Leverage 32 threads for concurrency [7, 15]
+      - OLLAMA_MAX_LOADED_MODELS=10 # Ensure full VRAM for the active model 
+      - OLLAMA_MAX_QUEUE=4096      # Handle spike loads [7, 36]
     ports:
       - "11434:11434"
     networks:
