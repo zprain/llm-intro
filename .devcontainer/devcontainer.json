@@ -1,0 +1,30 @@
+{
+    "name": "Agentic Coding Dev Container (ARM)",
+    "image": "mcr.microsoft.com/devcontainers/base:arch64", // Use ARM base image for native compatibility
+    "features": {
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+        "ghcr.io/devcontainers/features/git:1": {}
+    },
+    "remoteUser": "vscode",
+    "workspaceFolder": "/workspace",
+    "postCreateCommand": "sudo apt update && sudo apt install -y build-essential jq",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "saoudrizwan.claude-dev",
+                "kilocode.kilo-code",
+                "ms-python.python",
+                "eamodio.gitlens"
+            ],
+            "settings": {
+                "http.proxy": "",
+                "https.proxy": "",
+                "editor.formatOnSave": true,
+                "files.autoSave": "afterDelay"
+            }
+        }
+    },
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ]
+}
